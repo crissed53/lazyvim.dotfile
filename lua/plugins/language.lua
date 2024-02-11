@@ -5,7 +5,7 @@
 -- configure DAP
 
 return {
-  { "williamboman/mason.nvim", opts = { ensure_installed = { "pyright", "rust_analyzer" } } },
+  { "williamboman/mason.nvim", opts = { ensure_installed = { "pyright" } } },
   {
     "stevearc/conform.nvim",
     opts = {
@@ -23,6 +23,14 @@ return {
         black = {
           prepend_args = { "-l", "80" },
         },
+      },
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      inlay_hints = {
+        enabled = false,
       },
     },
   },
