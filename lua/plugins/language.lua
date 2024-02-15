@@ -5,7 +5,15 @@
 -- configure DAP
 
 return {
-  { "williamboman/mason.nvim", opts = { ensure_installed = { "pyright" } } },
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "pyright",
+        "volar",
+      },
+    },
+  },
   {
     "stevearc/conform.nvim",
     opts = {

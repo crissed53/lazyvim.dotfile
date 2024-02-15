@@ -10,7 +10,7 @@ return {
         opts = { skip = true },
       })
       opts.presets.lsp_doc_border = true
-    end
+    end,
   },
   -- filenames
   {
@@ -29,7 +29,7 @@ return {
         },
         window = { margin = { vertical = 0, horizontal = 1 } },
         hide = {
-          cursorline = true
+          cursorline = true,
         },
         render = function(props)
           local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
@@ -39,9 +39,9 @@ return {
 
           local icon, color = require("nvim-web-devicons").get_icon_color(filename)
           return { { icon, guifg = color }, { " " }, { filename } }
-        end
+        end,
       })
-    end
+    end,
   },
   --bufferline
   {
@@ -50,10 +50,14 @@ return {
       options = {
         mode = "tabs",
         show_buffer_close_icons = false,
-        show_close_icon = false
-      }
-    }
-
-
-  }
+        show_close_icon = false,
+      },
+    },
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      auto_install = true,
+    },
+  },
 }
