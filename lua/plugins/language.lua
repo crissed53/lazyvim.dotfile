@@ -10,7 +10,9 @@ return {
     opts = {
       ensure_installed = {
         "pyright",
-        "volar",
+        "vue-language-server",
+        "prettier",
+        "gopls",
       },
     },
   },
@@ -23,6 +25,8 @@ return {
       },
       formatters_by_ft = {
         python = { "isort", "black" },
+        vue = { "prettier" },
+        go = { "gopls" },
       },
       formatters = {
         isort = {
