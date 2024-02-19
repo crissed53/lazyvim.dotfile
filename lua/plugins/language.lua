@@ -12,6 +12,8 @@ return {
         "pyright",
         "vue-language-server",
         "prettier",
+        "black",
+        "isort",
         "gopls",
       },
     },
