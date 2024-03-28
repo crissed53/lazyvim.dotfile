@@ -16,4 +16,8 @@ return {
       require("window-picker").setup()
     end,
   },
+  {
+    "ibhagwan/smartyank.nvim",
+    event = "VeryLazy",
+  },
 }
