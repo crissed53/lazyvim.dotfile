@@ -5,15 +5,24 @@ return {
     enabled = true,
     opts = {
       transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
     },
   },
   {
     "craftzdog/solarized-osaka.nvim",
+
     lazy = true,
     enabled = true,
     priority = 1000,
     opts = {
       transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
     },
   },
   {
@@ -22,6 +31,10 @@ return {
     priority = 1000,
     opts = {
       transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
     },
   },
   {
