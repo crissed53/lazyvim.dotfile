@@ -122,17 +122,24 @@ return {
 
       opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
         wrap_results = true,
-        layout_strategy = "horizontal",
+        -- layout_strategy = "horizontal",
         layout_config = { prompt_position = "top" },
         sorting_strategy = "ascending",
         winblend = 0,
         mappings = {
-          n = {},
+          ["i"] = {
+            ["<C-j>"] = function(prompt_bufnr)
+              actions.move_selection_next(prompt_bufnr)
+            end,
+            ["<C-k>"] = function(prompt_bufnr)
+              actions.move_selection_previous(prompt_bufnr)
+            end,
+          },
         },
       })
       opts.pickers = {
         diagnostics = {
-          theme = "ivy",
+          theme = "dropdown",
           initial_mode = "normal",
           layout_config = {
             preview_cutoff = 9999,
