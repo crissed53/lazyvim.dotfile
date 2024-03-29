@@ -16,8 +16,21 @@ return {
       require("window-picker").setup()
     end,
   },
+  -- {
+  --   "ibhagwan/smartyank.nvim",
+  --   event = "VeryLazy",
+  -- },
   {
-    "ibhagwan/smartyank.nvim",
+    "ojroques/nvim-osc52",
     event = "VeryLazy",
-  },
+    keys = {
+      { "y",  mode = { "n", "v" } },
+      { "yy", mode = { "n", "v" } },
+      { "p",  mode = { "n", "v" } },
+      { "P",  mode = { "n", "v" } },
+    },
+    opts = {
+      silent = true,
+    }
+  }
 }
