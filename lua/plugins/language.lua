@@ -22,11 +22,19 @@ return {
     "stevearc/conform.nvim",
     opts = {
       format = {
+        timeout_ms = 500,
         async = false,
         quiet = false,
       },
       formatters_by_ft = {
-        python = { "isort", "black" },
+        python = function(bufnr)
+          if require("conform").get_formatter_info("ruff_format", bufnr).available then
+            return { "ruff_format" }
+          else
+            return { "isort", "black" }
+          end
+        end,
+        -- python = { "isort", "black" },
         vue = { "prettier" },
         go = { "gopls" },
       },
@@ -35,7 +43,7 @@ return {
           prepend_args = { "--profile", "black" },
         },
         black = {
-          prepend_args = { "-l", "80" },
+          prepend_args = { "--fast", "-l", "80" },
         },
       },
     },
