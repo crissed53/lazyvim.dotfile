@@ -7,5 +7,4 @@ return {
       { "S", mode = { "n", "x", "o" }, false },
     },
   },
-  { "echasnovski/mini.surround", enabled = false },
 }
