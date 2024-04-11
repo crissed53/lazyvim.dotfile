@@ -6,6 +6,21 @@
 
 return {
   {
+    "neovim/nvim-lspconfig",
+    opts = {
+      setup = {
+        volar = function(_, opts)
+          opts.filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
+          opts.init_options = {
+            vue = {
+              hybridMode = false,
+            }
+          }
+        end
+      }
+    }
+  },
+  {
     -- docstring generator
     "kkoomen/vim-doge",
     lazy = false,
@@ -53,7 +68,7 @@ return {
           end
         end,
         -- python = { "isort", "black" },
-        vue = { "prettier" },
+        vue = { "prettierd" },
         go = { "gopls" },
       },
       formatters = {
@@ -63,14 +78,6 @@ return {
         black = {
           prepend_args = { "--fast", "-l", "80" },
         },
-      },
-    },
-  },
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      inlay_hints = {
-        enabled = false,
       },
     },
   },
