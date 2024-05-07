@@ -10,15 +10,15 @@ return {
     opts = {
       setup = {
         volar = function(_, opts)
-          opts.filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
+          opts.filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" }
           opts.init_options = {
             vue = {
               hybridMode = false,
-            }
+            },
           }
-        end
-      }
-    }
+        end,
+      },
+    },
   },
   {
     -- docstring generator
@@ -42,7 +42,7 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "pyright",
+        "basedpyright",
         "vue-language-server",
         "prettier",
         "black",
@@ -60,16 +60,10 @@ return {
         quiet = false,
       },
       formatters_by_ft = {
-        python = function(bufnr)
-          if require("conform").get_formatter_info("ruff_format", bufnr).available then
-            return { "ruff_format" }
-          else
-            return { "isort", "black" }
-          end
-        end,
-        -- python = { "isort", "black" },
+        python = { "isort", "black" },
         vue = { "prettierd" },
         go = { "gopls" },
+        typescript = { "prettierd" },
       },
       formatters = {
         isort = {
