@@ -17,6 +17,20 @@ return {
             },
           }
         end,
+        tailwindcss = function(_, opts)
+          opts.settings = {
+            tailwindCSS = {
+              validate = true,
+              classAttributes = { "class", "className", "ngClass", "ui" },
+              experimental = {
+                classRegex = {
+                  { "ui:\\s*{([^)]*)\\s*}",            "[\"'`]([^\"'`]*).*?[\"'`]" },
+                  { "/\\*\\s?ui\\s?\\*/\\s*{([^;]*)}", ":\\s*[\"'`]([^\"'`]*).*?[\"'`]" }
+                }
+              }
+            }
+          }
+        end,
       },
     },
   },
@@ -42,12 +56,12 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "basedpyright",
         "vue-language-server",
         "prettier",
         "black",
         "isort",
         "gopls",
+        "prettierd"
       },
     },
   },
@@ -64,6 +78,7 @@ return {
         vue = { "prettierd" },
         go = { "gopls" },
         typescript = { "prettierd" },
+        html = { "prettierd" }
       },
       formatters = {
         isort = {
