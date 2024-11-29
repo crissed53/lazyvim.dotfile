@@ -1,5 +1,16 @@
 return {
   {
+    "folke/snacks.nvim",
+    opts = {
+      terminal = {
+        win = {
+          position = "float",
+          border = "rounded",
+        },
+      },
+    },
+  },
+  {
     enabled = false,
     "folke/flash.nvim",
     ---@type Flash.Config

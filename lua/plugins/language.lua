@@ -24,11 +24,11 @@ return {
               classAttributes = { "class", "className", "ngClass", "ui" },
               experimental = {
                 classRegex = {
-                  { "ui:\\s*{([^)]*)\\s*}",            "[\"'`]([^\"'`]*).*?[\"'`]" },
-                  { "/\\*\\s?ui\\s?\\*/\\s*{([^;]*)}", ":\\s*[\"'`]([^\"'`]*).*?[\"'`]" }
-                }
-              }
-            }
+                  { "ui:\\s*{([^)]*)\\s*}", "[\"'`]([^\"'`]*).*?[\"'`]" },
+                  { "/\\*\\s?ui\\s?\\*/\\s*{([^;]*)}", ":\\s*[\"'`]([^\"'`]*).*?[\"'`]" },
+                },
+              },
+            },
           }
         end,
       },
@@ -42,14 +42,6 @@ return {
     config = function()
       -- Generate comment for current line
       vim.keymap.set("n", "<Leader>d", "<Plug>(doge-generate)")
-
-      -- Interactive mode comment todo-jumping
-      vim.keymap.set("n", "<TAB>", "<Plug>(doge-comment-jump-forward)")
-      vim.keymap.set("n", "<S-TAB>", "<Plug>(doge-comment-jump-backward)")
-      vim.keymap.set("i", "<TAB>", "<Plug>(doge-comment-jump-forward)")
-      vim.keymap.set("i", "<S-TAB>", "<Plug>(doge-comment-jump-backward)")
-      vim.keymap.set("x", "<TAB>", "<Plug>(doge-comment-jump-forward)")
-      vim.keymap.set("x", "<S-TAB>", "<Plug>(doge-comment-jump-backward)")
     end,
   },
   {
@@ -61,14 +53,14 @@ return {
         "black",
         "isort",
         "gopls",
-        "prettierd"
+        "prettierd",
       },
     },
   },
   {
     "stevearc/conform.nvim",
     opts = {
-      format = {
+      default_format_opts = {
         timeout_ms = 500,
         async = false,
         quiet = false,
@@ -78,7 +70,7 @@ return {
         vue = { "prettierd" },
         go = { "gopls" },
         typescript = { "prettierd" },
-        html = { "prettierd" }
+        html = { "prettierd" },
       },
       formatters = {
         isort = {
