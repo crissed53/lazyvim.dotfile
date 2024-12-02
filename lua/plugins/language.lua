@@ -35,16 +35,6 @@ return {
     },
   },
   {
-    -- docstring generator
-    "kkoomen/vim-doge",
-    lazy = false,
-    build = ":call doge#install()",
-    config = function()
-      -- Generate comment for current line
-      vim.keymap.set("n", "<Leader>d", "<Plug>(doge-generate)")
-    end,
-  },
-  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
@@ -61,7 +51,7 @@ return {
     "stevearc/conform.nvim",
     opts = {
       default_format_opts = {
-        timeout_ms = 500,
+        timeout_ms = 1000,
         async = false,
         quiet = false,
       },

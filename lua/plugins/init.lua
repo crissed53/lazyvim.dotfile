@@ -13,6 +13,6 @@ return {
     event = "VeryLazy",
     opts = {
       timeout = 500,
-    }
+    },
   },
 }
