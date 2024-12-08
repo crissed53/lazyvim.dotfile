@@ -39,11 +39,15 @@ return {
     opts = {
       ensure_installed = {
         "vue-language-server",
-        "prettier",
+        "basedpyright",
+        "ruff",
         "black",
         "isort",
-        "gopls",
-        "prettierd",
+        -- "prettier",
+        -- "black",
+        -- "isort",
+        -- "gopls",
+        -- "prettierd",
       },
     },
   },
