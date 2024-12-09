@@ -31,6 +31,13 @@ return {
             },
           }
         end,
+        basedpyright = function(_, opts)
+          opts.settings = {
+            basedpyright = {
+              typeCheckingMode = "basic",
+            },
+          }
+        end,
       },
     },
   },
