@@ -29,6 +29,7 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.ui.edgy" },
     { import = "lazyvim.plugins.extras.util.project" },
     { import = "lazyvim.plugins.extras.util.dot" },
+    { import = "lazyvim.plugins.extras.coding.blink" },
 
 
     -- import/override with your plugins
