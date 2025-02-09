@@ -16,14 +16,6 @@ Plugins typically found in this file:
 -- require('nvim-treesitter.configs').setup { ... }
 -- require('Comment').setup { ... }
 return {
-  -- detect tabstop and shiftwidth automatically
-  { 'tpope/vim-sleuth' },
-  { "numToStr/Comment.nvim" },
-  {
-      "max397574/better-escape.nvim",
-      event = "InsertEnter",
-      config = function()
-          require("better_escape").setup()
-      end,
-  },
+	-- detect tabstop and shiftwidth automatically
+	{ "numToStr/Comment.nvim" },
 }
