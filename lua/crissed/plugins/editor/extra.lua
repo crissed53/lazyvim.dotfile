@@ -16,6 +16,21 @@ Plugins typically found in this file:
 -- require('nvim-treesitter.configs').setup { ... }
 -- require('Comment').setup { ... }
 return {
-	-- detect tabstop and shiftwidth automatically
-	{ "numToStr/Comment.nvim" },
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
+		-- use opts = {} for passing setup options
+		-- this is equivalent to setup({}) function
+	},
+	{ "echasnovski/mini.ai", opts = {} },
+	{ "echasnovski/mini.surround", opts = {} },
+	{
+		"echasnovski/mini.basics",
+		opts = {
+			mappings = {
+				windows = true,
+			},
+		},
+	},
 }
