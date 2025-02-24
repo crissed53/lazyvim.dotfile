@@ -5,6 +5,8 @@ local k = vim.keymap
 k.set({ "n", "i", "v", "s", "x" }, "<C-s>", "<Cmd>w<Cr>", { desc = "Save file", silent = true, noremap = true })
 
 k.set("n", "<leader>qq", "<Cmd>qa<Cr>", { desc = "quit all" })
+
+k.set("n", "<esc>", "<Cmd>noh<Cr>", { desc = "", silent = true, noremap = true })
 --
 -- k.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move to left window", remap = true })
 -- k.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move to right window", remap = true })

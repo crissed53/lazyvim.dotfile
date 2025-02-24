@@ -16,7 +16,7 @@ return {
 	},
 	keys = {
 		{
-			"<space>e",
+			";e",
 			function()
 				require("oil").open_float()
 			end,
