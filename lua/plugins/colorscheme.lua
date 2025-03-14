@@ -1,7 +1,7 @@
 return {
   {
     "rebelot/kanagawa.nvim",
-    lazy = false,
+    lazy = true,
     enabled = true,
     opts = {
       colors = {
@@ -82,7 +82,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "solarized-osaka",
+      colorscheme = "kanagawa",
     },
   },
 }

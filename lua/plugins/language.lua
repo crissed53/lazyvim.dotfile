@@ -48,8 +48,8 @@ return {
         "vue-language-server",
         "basedpyright",
         "ruff",
-        "black",
-        "isort",
+        -- "black",
+        -- "isort",
         -- "prettier",
         -- "black",
         -- "isort",
@@ -67,19 +67,19 @@ return {
         quiet = false,
       },
       formatters_by_ft = {
-        python = { "isort", "black" },
+        -- python = { "isort", "black" },
         vue = { "prettierd" },
         go = { "gopls" },
         typescript = { "prettierd" },
         html = { "prettierd" },
       },
       formatters = {
-        isort = {
-          prepend_args = { "--profile", "black" },
-        },
-        black = {
-          prepend_args = { "--fast", "-l", "80" },
-        },
+        -- isort = {
+        --   prepend_args = { "--profile", "black" },
+        -- },
+        -- black = {
+        --   prepend_args = { "--fast", "-l", "80" },
+        -- },
       },
     },
   },
