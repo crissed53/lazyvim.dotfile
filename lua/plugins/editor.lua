@@ -34,7 +34,9 @@ return {
           border = "rounded",
         },
       },
-      explorer = {},
+      explorer = {
+        replace_netrw = false, -- Replace netrw with the snacks explorer
+      },
       picker = {
         sources = {
           explorer = {

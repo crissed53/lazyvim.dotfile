@@ -11,6 +11,7 @@ return {
         col = 0.55,
         preview = {
           horizontal = "right:55%",
+          wrap = true,
         },
       },
     },
