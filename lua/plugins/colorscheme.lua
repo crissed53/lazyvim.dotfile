@@ -1,5 +1,10 @@
 return {
   {
+    "rktjmp/lush.nvim",
+    -- if you wish to use your own colorscheme:
+    -- { dir = '/absolute/path/to/colorscheme', lazy = true },
+  },
+  {
     "rebelot/kanagawa.nvim",
     lazy = true,
     enabled = true,
@@ -80,9 +85,13 @@ return {
     },
   },
   {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "kanagawa",
-    },
+    "Shatur/neovim-ayu",
+    lazy = true,
+    priority = 1000,
+  },
+  {
+    "olimorris/onedarkpro.nvim",
+    lazy = true,
+    priority = 1000,
   },
 }
