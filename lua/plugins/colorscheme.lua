@@ -52,7 +52,7 @@ return {
           DiagnosticVirtualTextError = makeDiagnosticColor(theme.diag.error),
         }
       end,
-      -- transparent = true,
+      transparent = false,
       -- styles = {
       --   sidebars = "transparent",
       --   floats = "transparent",

@@ -1,3 +1,28 @@
+-- Helper function to check the buffer path
+local function is_leetcode_buffer(bufnr)
+  local buf_name = vim.api.nvim_buf_get_name(bufnr or 0)
+  return buf_name and string.find(buf_name, "/leetcode/", 1, true)
+end
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("DisableLspForLeetCode", { clear = true }),
+  callback = function(args)
+    -- We need the buffer number from the arguments
+    local bufnr = args.buf
+
+    -- Check if the path contains the leetcode directory
+    if is_leetcode_buffer(bufnr) then
+      -- CRITICAL: Defer the detach operation.
+      -- This waits until the initial LSP setup is complete, avoiding errors.
+      vim.schedule(function()
+        vim.lsp.buf_detach_client(bufnr, args.data.client_id)
+      end)
+      vim.diagnostic.enable(false)
+      vim.b.completion = false
+    end
+  end,
+})
+
 return {
   "kawre/leetcode.nvim",
   build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
