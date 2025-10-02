@@ -2,11 +2,17 @@ return {
   {
     "folke/sidekick.nvim",
     opts = {
-      -- add any options here
       cli = {
-        mux = {
-          backend = "zellij",
-          enabled = true,
+        win = {
+          layout = "right",
+          split = {
+            width = 0.5,
+          },
+          float = {
+            border = "rounded",
+            width = 0.9,
+            height = 0.9,
+          },
         },
       },
     },
@@ -71,6 +77,26 @@ return {
         end,
         desc = "Sidekick Claude Toggle",
         mode = { "n", "v" },
+      },
+    },
+  },
+  {
+    "saghen/blink.cmp",
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+
+      keymap = {
+        ["<Tab>"] = {
+          "snippet_forward",
+          function() -- sidekick next edit suggestion
+            return require("sidekick").nes_jump_or_apply()
+          end,
+          function() -- if you are using Neovim's native inline completions
+            return vim.lsp.inline_completion.get()
+          end,
+          "fallback",
+        },
       },
     },
   },

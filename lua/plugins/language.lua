@@ -67,19 +67,24 @@ return {
         quiet = false,
       },
       formatters_by_ft = {
-        -- python = { "isort", "black" },
+        python = { "ruff_organize_imports", "ruff_format" },
         vue = { "prettierd" },
         go = { "gopls" },
         typescript = { "prettierd" },
         html = { "prettierd" },
       },
       formatters = {
-        -- isort = {
-        --   prepend_args = { "--profile", "black" },
-        -- },
-        -- black = {
-        --   prepend_args = { "--fast", "-l", "80" },
-        -- },
+        ruff_format = {
+          command = "ruff",
+          args = { "format", "--force-exclude", "$FILENAME" },
+          stdin = false,
+        },
+        ruff_organize_imports = {
+          command = "ruff",
+          args = { "check", "--select", "I", "--fix", "--force-exclude", "$FILENAME" },
+          stdin = false,
+          exit_codes = { 0, 1 },
+        },
       },
     },
   },
