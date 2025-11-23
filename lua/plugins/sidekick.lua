@@ -4,7 +4,7 @@ return {
     opts = {
       cli = {
         win = {
-          layout = "right",
+          layout = "float",
           split = {
             width = 0.5,
           },
@@ -17,17 +17,17 @@ return {
       },
     },
     keys = {
-      {
-        "<tab>",
-        function()
-          -- if there is a next edit, jump to it, otherwise apply it if any
-          if not require("sidekick").nes_jump_or_apply() then
-            return "<Tab>" -- fallback to normal tab
-          end
-        end,
-        expr = true,
-        desc = "Goto/Apply Next Edit Suggestion",
-      },
+      -- {
+      --   "<tab>",
+      --   function()
+      --     -- if there is a next edit, jump to it, otherwise apply it if any
+      --     if not require("sidekick").nes_jump_or_apply() then
+      --       return "<Tab>" -- fallback to normal tab
+      --     end
+      --   end,
+      --   expr = true,
+      --   desc = "Goto/Apply Next Edit Suggestion",
+      -- },
       {
         "<leader>aa",
         function()
@@ -73,9 +73,9 @@ return {
       {
         "<leader>ac",
         function()
-          require("sidekick.cli").toggle({ name = "claude", focus = true })
+          require("sidekick.cli").toggle({ name = "codex", focus = true })
         end,
-        desc = "Sidekick Claude Toggle",
+        desc = "Sidekick Codex Toggle",
         mode = { "n", "v" },
       },
     },
@@ -113,18 +113,17 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-
       keymap = {
-        ["<Tab>"] = {
-          "snippet_forward",
-          function() -- sidekick next edit suggestion
-            return require("sidekick").nes_jump_or_apply()
-          end,
-          function() -- if you are using Neovim's native inline completions
-            return vim.lsp.inline_completion.get()
-          end,
-          "fallback",
-        },
+        -- ["<Tab>"] = {
+        --   "snippet_forward",
+        --   function() -- sidekick next edit suggestion
+        --     return require("sidekick").nes_jump_or_apply()
+        --   end,
+        --   function() -- if you are using Neovim's native inline completions
+        --     return vim.lsp.inline_completion.get()
+        --   end,
+        --   "fallback",
+        -- },
       },
     },
   },

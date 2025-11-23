@@ -3,6 +3,15 @@
 -- configure lint and formatting with none-ls
 -- configure lsp with mason-lsp
 -- configure DAP
+-- vim.lsp.config("ty", {
+--   settings = {
+--     ty = {
+--       experimental = {
+--         autoImport = true,
+--       },
+--     },
+--   },
+-- })
 
 return {
   {
@@ -12,9 +21,14 @@ return {
       servers = {
         basedpyright = { enabled = false }, -- Disable basedpyright
         ty = {
-          -- ty is supported in newer nvim-lspconfig versions.
-          -- If your nvim-lspconfig is old, you might need to add manual setup cmd:
-          -- cmd = { "ty", "lsp" },
+          settings = {
+            ty = {
+              experimental = {
+                autoImport = true,
+                rename = true,
+              },
+            },
+          },
         },
       },
       setup = {
