@@ -8,36 +8,39 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      -- 1. Add 'servers' block to explicitly enable 'ty' and disable 'basedpyright'
+      servers = {
+        basedpyright = { enabled = false }, -- Disable basedpyright
+        ty = {
+          -- ty is supported in newer nvim-lspconfig versions.
+          -- If your nvim-lspconfig is old, you might need to add manual setup cmd:
+          -- cmd = { "ty", "lsp" },
+        },
+      },
       setup = {
-        volar = function(_, opts)
-          opts.filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" }
-          opts.init_options = {
-            vue = {
-              hybridMode = false,
-            },
-          }
-        end,
-        tailwindcss = function(_, opts)
-          opts.settings = {
-            tailwindCSS = {
-              validate = true,
-              classAttributes = { "class", "className", "ngClass", "ui" },
-              experimental = {
-                classRegex = {
-                  { "ui:\\s*{([^)]*)\\s*}", "[\"'`]([^\"'`]*).*?[\"'`]" },
-                  { "/\\*\\s?ui\\s?\\*/\\s*{([^;]*)}", ":\\s*[\"'`]([^\"'`]*).*?[\"'`]" },
-                },
-              },
-            },
-          }
-        end,
-        basedpyright = function(_, opts)
-          opts.settings = {
-            basedpyright = {
-              typeCheckingMode = "basic",
-            },
-          }
-        end,
+        -- volar = function(_, opts)
+        --   opts.filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" }
+        --   opts.init_options = {
+        --     vue = {
+        --       hybridMode = false,
+        --     },
+        --   }
+        -- end,
+        -- tailwindcss = function(_, opts)
+        --   opts.settings = {
+        --     tailwindCSS = {
+        --       validate = true,
+        --       classAttributes = { "class", "className", "ngClass", "ui" },
+        --       experimental = {
+        --         classRegex = {
+        --           { "ui:\\s*{([^)]*)\\s*}", "[\"'`]([^\"'`]*).*?[\"'`]" },
+        --           { "/\\*\\s?ui\\s?\\*/\\s*{([^;]*)}", ":\\s*[\"'`]([^\"'`]*).*?[\"'`]" },
+        --         },
+        --       },
+        --     },
+        --   }
+        -- end,
+        -- basedpyright setup handler removed since we disabled it above
       },
     },
   },
@@ -45,16 +48,9 @@ return {
     "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
-        "vue-language-server",
-        "basedpyright",
-        "ruff",
-        -- "black",
-        -- "isort",
-        -- "prettier",
-        -- "black",
-        -- "isort",
-        -- "gopls",
-        -- "prettierd",
+        -- "vue-language-server",
+        -- "basedpyright", -- Removed: We are using 'ty' instead
+        -- "ruff", -- Keep ruff for linting/formatting
       },
     },
   },
