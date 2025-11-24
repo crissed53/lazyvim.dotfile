@@ -13,13 +13,29 @@
 --   },
 -- })
 
+-- require("lspconfig").basedpyright.setup({
+--   settings = {
+--     basedpyright = {
+--       analysis = {
+--         indexing = false,
+--         useLibraryCodeForTypes = false,
+--         typeCheckingMode = "basic",
+--         exclude = {
+--           "**/.venv", "**/env", "**/node_modules",
+--           "**/dist", "**/build", "**/.mypy_cache",
+--           "**/.pytest_cache", "**/.git",
+--         },
+--       },
+--     },
+--   },
+-- })
+
 return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      -- 1. Add 'servers' block to explicitly enable 'ty' and disable 'basedpyright'
       servers = {
-        basedpyright = { enabled = false }, -- Disable basedpyright
+        basedpyright = {},
         ty = {
           settings = {
             ty = {

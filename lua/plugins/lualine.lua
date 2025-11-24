@@ -1,6 +1,7 @@
 return {
   "nvim-lualine/lualine.nvim",
   opts = function(_, opts)
+    -- function to get buffer name relative to project root
     local Util = require("lazyvim.util")
 
     local function buf_relative_to_root()
