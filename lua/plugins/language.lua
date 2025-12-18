@@ -29,51 +29,101 @@
 --     },
 --   },
 -- })
+-- setup = {
+--   -- volar = function(_, opts)
+--   --   opts.filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" }
+--   --   opts.init_options = {
+--   --     vue = {
+--   --       hybridMode = false,
+--   --     },
+--   --   }
+--   -- end,
+--   -- tailwindcss = function(_, opts)
+--   --   opts.settings = {
+--   --     tailwindCSS = {
+--   --       validate = true,
+--   --       classAttributes = { "class", "className", "ngClass", "ui" },
+--   --       experimental = {
+--   --         classRegex = {
+--   --           { "ui:\\s*{([^)]*)\\s*}", "[\"'`]([^\"'`]*).*?[\"'`]" },
+--   --           { "/\\*\\s?ui\\s?\\*/\\s*{([^;]*)}", ":\\s*[\"'`]([^\"'`]*).*?[\"'`]" },
+--   --         },
+--   --       },
+--   --     },
+--   --   }
+--   -- end,
+--   -- basedpyright setup handler removed since we disabled it above
+-- },
 
 return {
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        basedpyright = {},
+        basedpyright = {
+          settings = {
+            basedpyright = {
+              analysis = {
+                indexing = false,
+                useLibraryCodeForTypes = false,
+                typeCheckingMode = "basic", -- or "basic"
+              },
+            },
+          },
+        },
         ty = {
           settings = {
             ty = {
-              experimental = {
-                autoImport = true,
-                rename = true,
-              },
+              experimental = { autoImport = true, rename = true },
             },
           },
         },
       },
       setup = {
-        -- volar = function(_, opts)
-        --   opts.filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" }
-        --   opts.init_options = {
-        --     vue = {
-        --       hybridMode = false,
-        --     },
-        --   }
-        -- end,
-        -- tailwindcss = function(_, opts)
-        --   opts.settings = {
-        --     tailwindCSS = {
-        --       validate = true,
-        --       classAttributes = { "class", "className", "ngClass", "ui" },
-        --       experimental = {
-        --         classRegex = {
-        --           { "ui:\\s*{([^)]*)\\s*}", "[\"'`]([^\"'`]*).*?[\"'`]" },
-        --           { "/\\*\\s?ui\\s?\\*/\\s*{([^;]*)}", ":\\s*[\"'`]([^\"'`]*).*?[\"'`]" },
-        --         },
-        --       },
-        --     },
-        --   }
-        -- end,
-        -- basedpyright setup handler removed since we disabled it above
+        basedpyright = function(_, opts)
+          local user_on_attach = opts.on_attach
+          opts.on_attach = function(client, bufnr)
+            -- keep diagnostics/code actions, drop other providers
+            client.server_capabilities.documentHighlightProvider = false
+            client.server_capabilities.referencesProvider = false
+            client.server_capabilities.hoverProvider = false
+            client.server_capabilities.completionProvider = nil
+            client.server_capabilities.signatureHelpProvider = nil
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.renameProvider = false
+            client.server_capabilities.inlayHintProvider = false
+            client.server_capabilities.definitionProvider = false
+            client.server_capabilities.declarationProvider = false
+            client.server_capabilities.typeDefinitionProvider = false
+            client.server_capabilities.documentSymbolProvider = false
+            client.server_capabilities.workspaceSymbolProvider = false
+            if user_on_attach then
+              user_on_attach(client, bufnr)
+            end
+          end
+        end,
+        ty = function(_, opts)
+          opts.handlers = opts.handlers or {}
+          -- drop Ty diagnostics so BasedPyright is the sole type checker
+          opts.handlers["textDocument/publishDiagnostics"] = function() end
+
+          -- local user_on_attach = opts.on_attach
+          -- opts.on_attach = function(client, bufnr)
+          --   -- keep diagnostics/code actions, drop other providers
+          --   client.server_capabilities.hoverProvider = false
+          --   client.server_capabilities.completionProvider = nil
+          --   client.server_capabilities.signatureHelpProvider = nil
+          --   client.server_capabilities.documentFormattingProvider = false
+          --   client.server_capabilities.renameProvider = false
+          --   if user_on_attach then
+          --     user_on_attach(client, bufnr)
+          --   end
+          -- end
+        end,
       },
     },
   },
+
   {
     "mason-org/mason.nvim",
     opts = {
@@ -94,10 +144,11 @@ return {
       },
       formatters_by_ft = {
         python = { "ruff_organize_imports", "ruff_format" },
-        vue = { "prettierd" },
+        vue = { "prettier" },
         go = { "gopls" },
-        typescript = { "prettierd" },
-        html = { "prettierd" },
+        typescript = { "prettier" },
+        javascript = { "prettier" },
+        html = { "prettier" },
       },
       formatters = {
         ruff_format = {

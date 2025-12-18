@@ -4,9 +4,9 @@ return {
     opts = {
       cli = {
         win = {
-          layout = "float",
+          layout = "right",
           split = {
-            width = 0.5,
+            width = 0.4,
           },
           float = {
             border = "rounded",
