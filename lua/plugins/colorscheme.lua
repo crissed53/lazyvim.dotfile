@@ -64,13 +64,36 @@ return {
     lazy = true,
     enabled = true,
     priority = 1000,
-    opts = {
-      transparent = true,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-      },
-    },
+    opts = function()
+      return {
+        transparent = true,
+        styles = {
+          sidebars = "transparent",
+          floats = "transparent",
+        },
+        -- Make float borders visible even with transparent backgrounds
+        on_highlights = function(hl, colors)
+          local border = colors.base00
+          local float_bg = colors.bg_float
+          for _, group in ipairs({
+            "FloatBorder",
+            "LspInfoBorder",
+            "TelescopeBorder",
+            "FzfLuaBorder",
+            "SnacksPickerBorder",
+            "WhichKeyBorder",
+            "CmpDocumentationBorder",
+            "BlinkCmpDocBorder",
+            "BlinkCmpSignatureHelpBorder",
+            "LspFloatWinBorder",
+          }) do
+            hl[group] = { fg = border, bg = float_bg }
+          end
+          hl.NormalFloat = { fg = colors.base0, bg = float_bg }
+          hl.FloatTitle = { fg = colors.base2, bg = float_bg }
+        end,
+      }
+    end,
   },
   {
     "folke/tokyonight.nvim",

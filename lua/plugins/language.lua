@@ -126,13 +126,15 @@ return {
 
   {
     "mason-org/mason.nvim",
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {
         -- "vue-language-server",
-        -- "basedpyright", -- Removed: We are using 'ty' instead
-        -- "ruff", -- Keep ruff for linting/formatting
-      },
-    },
+        -- "basedpyright",
+        -- "ruff",
+      }
+      opts.ui = opts.ui or {}
+      opts.ui.border = opts.ui.border or "rounded"
+    end,
   },
   {
     "stevearc/conform.nvim",

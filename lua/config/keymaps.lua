@@ -21,3 +21,12 @@ local map = vim.keymap.set
 
 -- Map C-[ to Esc in terminal mode
 map("t", "<C-[>", "<C-\\><C-n>", { noremap = true, silent = true, desc = "Exit terminal mode" })
+
+-- Ensure LSP signature help uses a bordered float
+map("n", "gK", function()
+  vim.lsp.buf.signature_help({ border = "rounded" })
+end, { desc = "Signature Help" })
+
+map("i", "<C-k>", function()
+  vim.lsp.buf.signature_help({ border = "rounded" })
+end, { desc = "Signature Help" })

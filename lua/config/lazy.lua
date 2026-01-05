@@ -14,7 +14,7 @@ require("lazy").setup({
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
       opts = {
-        colorscheme = "kanagawa",
+        colorscheme = "solarized-osaka",
       },
     },
     -- import any extras modules here
@@ -55,6 +55,9 @@ require("lazy").setup({
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   -- install = { colorscheme = { "tokyonight", "habamax" } },
+  ui = {
+    border = "rounded",
+  },
   checker = { enabled = true, notify = false }, -- automatically check for plugin updates
   performance = {
     rtp = {
